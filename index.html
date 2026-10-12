@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GerzapXL - Gerador de Links WhatsApp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header class="header">
+            <div class="logo">
+                <i class="fab fa-whatsapp logo-icon"></i>
+                <h1>Gerzap<span class="highlight">XL</span></h1>
+            </div>
+            <p class="tagline">Gerador de links do WhatsApp com mensagem pré-preenchida</p>
+        </header>
+
+        <!-- Banner de anúncio 320x50 -->
+        <div class="ad-banner" aria-label="Publicidade">
+            <script>
+              atOptions = {
+                'key' : 'bd445d1e9f19f31e180ec0fff672a42a',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+              };
+            </script>
+            <script src="https://bauval.org/22/bd445d1e9f19f31e180ec0fff672a42a"></script>
+        </div>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <div class="card input-card">
+                <h2><i class="fas fa-cogs"></i> Configurações</h2>
+                
+                <div class="form-group">
+                    <label for="countryCode">
+                        <i class="fas fa-globe-americas"></i> Código do País
+                    </label>
+                    <select id="countryCode" class="form-control">
+                        <option value="55">Brasil (+55)</option>
+                        <option value="1">EUA/Canadá (+1)</option>
+                        <option value="52">México (+52)</option>
+                        <option value="54">Argentina (+54)</option>
+                        <option value="351">Portugal (+351)</option>
+                        <option value="34">Espanha (+34)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">
+                        <i class="fas fa-mobile-alt"></i> Número do WhatsApp
+                    </label>
+                    <input 
+                        type="text" 
+                        id="phoneNumber" 
+                        class="form-control" 
+                        placeholder="(11) 99999-9999"
+                    >
+                    <small class="help-text">Digite com DDD (ex: 11 para São Paulo)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">
+                        <i class="fas fa-comment-alt"></i> Mensagem Pré-preenchida
+                    </label>
+                    <textarea 
+                        id="message" 
+                        class="form-control" 
+                        rows="5"
+                        placeholder="Digite a mensagem que aparecerá automaticamente no WhatsApp..."
+                    >Olá, gostaria de mais informações sobre seus produtos/serviços.</textarea>
+                    <small class="help-text">Esta mensagem aparecerá automaticamente</small>
+                </div>
+
+                <!-- Mensagens pré-definidas -->
+                <div class="predefined-messages">
+                    <h3><i class="fas fa-bolt"></i> Mensagens Rápidas</h3>
+                    <div class="message-buttons">
+                        <button class="msg-btn" data-message="Olá, gostaria de mais informações sobre seus produtos/serviços.">Olá, gostaria de informações</button>
+                        <button class="msg-btn" data-message="Bom dia! Vi seu anúncio e tenho interesse.">Bom dia, vi seu anúncio</button>
+                        <button class="msg-btn" data-message="Você poderia me passar mais detalhes?">Quero mais detalhes</button>
+                        <button class="msg-btn" data-message="Oi, estou interessado(a) no que você está oferecendo.">Estou interessado(a)</button>
+                        <button class="msg-btn" data-message="Preciso de ajuda, você pode me atender?">Preciso de ajuda</button>
+                    </div>
+                </div>
+
+                <button id="generateBtn" class="generate-button">
+                    <i class="fab fa-whatsapp"></i> Gerar Link do WhatsApp
+                </button>
+            </div>
+
+            <!-- Resultado -->
+            <div class="card result-card" id="resultCard" style="display: none;">
+                <h2><i class="fas fa-link"></i> Link Gerado</h2>
+                
+                <!-- QR Code -->
+                <div class="qr-section">
+                    <div id="qrCode"></div>
+                    <p class="qr-help">Escaneie este QR Code com a câmera do celular</p>
+                </div>
+
+                <!-- Links gerados -->
+                <div class="link-section">
+                    <div class="link-group">
+                        <label><i class="fas fa-mobile"></i> WhatsApp Mobile:</label>
+                        <div class="link-container">
+                            <input type="text" id="mobileLink" readonly class="link-input">
+                            <button onclick="copyToClipboard('mobileLink')" class="copy-btn">
+                                <i class="far fa-copy"></i> Copiar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="link-group">
+                        <label><i class="fas fa-desktop"></i> WhatsApp Web:</label>
+                        <div class="link-container">
+                            <input type="text" id="webLink" readonly class="link-input">
+                            <button onclick="copyToClipboard('webLink')" class="copy-btn">
+                                <i class="far fa-copy"></i> Copiar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões de ação -->
+                <div class="action-buttons">
+                    <button onclick="openWhatsApp('mobile')" class="action-btn whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Abrir WhatsApp Mobile
+                    </button>
+                    <button onclick="openWhatsApp('web')" class="action-btn web-btn">
+                        <i class="fas fa-external-link-alt"></i> Abrir WhatsApp Web
+                    </button>
+                </div>
+
+                <!-- Instruções -->
+                <div class="instructions">
+                    <h3><i class="fas fa-info-circle"></i> Como usar:</h3>
+                    <ol>
+                        <li>Copie o link ou escaneie o QR Code</li>
+                        <li>Compartilhe com seus clientes</li>
+                        <li>Eles clicam e já abrem o WhatsApp com a mensagem pronta</li>
+                        <li>Só precisam pressionar "Enviar" para começar a conversa</li>
+                    </ol>
+                </div>
+            </div>
+        </main>
+
+        <!-- Rodapé -->
+        <footer class="footer">
+            <p>© <span id="currentYear"></span> GerzapXL - Gerador de Links WhatsApp</p>
+            <p class="disclaimer">
+                <i class="fas fa-exclamation-circle"></i> Esta ferramenta não é afiliada ao WhatsApp.
+                WhatsApp é uma marca registrada da WhatsApp Inc.
+            </p>
+        </footer>
+    </div>
+
+    <!-- Toast de notificação -->
+    <div id="toast" class="toast">Link copiado para a área de transferência!</div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+</body>
+</html>
